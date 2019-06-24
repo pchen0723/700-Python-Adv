@@ -24,6 +24,7 @@ def main():
     print ('After StartOver()', ', '.join([str(obj) for obj in objects]))
     Static2.JumpUp(100)
     objects += [Static2() for i in range(3)]
+    print ('objects:', objects)
     print ('After JumpUp()', ', '.join([str(obj) for obj in objects]))
 
 if __name__ == '__main__':

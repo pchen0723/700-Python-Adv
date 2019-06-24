@@ -1,16 +1,12 @@
 #!/usr/bin/env python
 """A stack again, this time using the built-in "list" type.
-
 A stack is just a list with a "push" method, since the list
 already has a "pop".  When it is-a "list" it inherits all
 the builtin facilities of the list.
 """ 
-
 class Stack(list):
-    
     def push(self, thing):
         list.append(self, thing)
-
 if __name__ == '__main__':
     stack = Stack()
     stack.push('Gone With The Wind')
@@ -40,4 +36,4 @@ The stack has all the list facilities, plus the 'push':
 Sorting then popping:
 Maltese Falcon
 $
-"""    
+"""

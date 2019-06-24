@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 """  
 Method Resolution For Diamond Inheritance (Optional)
-
                 ----------
                |    A     |
                |  -----   |
@@ -24,24 +23,11 @@ Method Resolution For Diamond Inheritance (Optional)
 
 Multiple inheritance from super classes that share a common super super class.
    - - -  - - -  - - -  - - -  - - -  - - -  - - -  - - - 
-
 Resolution order for new style classes in a diamond pattern:
-
 In the classic case, always left to right, depth first:
-
 D().x = 1
-
 In a new-style class, when the classes inherit from "object":
-
 """
-
-
-
-
-
-
-
-
 class A(object):
     def __init__(self):
         self.x = 1
@@ -52,7 +38,6 @@ class C(A):
         self.x = 2
 class D(B, C):
     pass
-
 print (D().x)
 """
 $ diamond.py

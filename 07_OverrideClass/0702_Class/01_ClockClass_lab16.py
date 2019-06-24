@@ -4,19 +4,12 @@
 import time
 
 def cmp(a, b):
-    #print ('a:',a, 'b:', b)
-    # print ('int(a) > int(b):', int(a) > int(b))
-    # print ('int(a) < int(b):', int(a) < int(b))
-    # print ('(int(a) > int(b)) - (int(a) < int(b))', (int(a) > int(b)) - (int(a) < int(b)))
     return (int(a) > int(b)) - (int(a) < int(b))
-
 # def cmp(a, b):
 #     return (a > b) - (a < b)
-
 class Clock:
     """Clock() for now, or Clock(hr, min) or Clock(min) or
     Clock("1:20") or Clock(dict) where dict has keys 'hr' and 'min'."""
-    
     def __init__(self, *args, **dict_args):
         no_args = len(args)
         if dict_args:
@@ -40,31 +33,24 @@ class Clock:
         else:
             raise (TypeError (Clock.__doc__))
         self.__normalize()
-
     def __add__(self, other):
         return Clock(self.hr + other.hr, self.min + other.min)
-
     def __cmp__(self, other):
         return cmp(int(self), int(other))
-
     def __eq__(self, other):
         if cmp(self, other) == 0:
             return True
         return False
-
     def __get_dict_args(self, dict_args):
         try:
             self.min = dict_args['min']
             self.hr = dict_args['hr']
         except KeyError:
             raise (TypeError (Clock.__doc__))
-
     def __int__(self):
         return self.MinutesSince12()
-
     def __neg__(self):
         return Clock(-self.hr, -self.min)
-
     def __normalize(self):
         """Assumes that self.min and self.hr are floatable and makes
         the values fit on a clock.

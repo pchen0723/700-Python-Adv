@@ -5,30 +5,28 @@ It is only available in "New Style" classes, which inherit from
 the "object" superclass.
 """  
 class Secret(object):  
-
     def __init__(self, secret_word):
         self.__secret = secret_word
-        
     def GetSecret(self):
+        print ('GetSerect():')
         return "I'll never tell."
-
     def SetSecret(self, new_secret):
+        print ('SetSecrect():')
         try:
             self.__secret += new_secret
         except AttributeError:
             raise AttributeError ("You can't start over.")
-
     def DelSecret(self):
+        print('DelSecret():')
         print ("No more secrets!")
         del self.__secret
-
     secret = property(GetSecret, SetSecret, DelSecret, 
                       "I've got the secret.")
-
     def IsSecret(self, trial):
+        print ('IsSecret() => self', self, 'trial:', trial)
         return trial == self.__secret
-
 def main():
+    print ("Secret('fish')")
     word = Secret('fish')
     print ("word.secret =", word.secret)
     print ("word.IsSecret('fish')", word.IsSecret('fish'))
@@ -38,10 +36,8 @@ def main():
     print (Secret.secret.__doc__)
     del word.secret
     word.secret = 'flounder'
-    
 if __name__ == '__main__':
     main()
-    
 """    
 $ att3.py
 word.secret = I'll never tell.
