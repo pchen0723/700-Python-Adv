@@ -1,14 +1,12 @@
 #!/usr/bin/env python
 """parser.py -f filename word-to-count [-q]
 Counts the number of times word-to-count appears in filename.
-
 Demonstrates the optparse module for parsing the command line options
 and putting them into suitably-named identifiers in a namespace.
 See: http://www.python.org/lib/optparse-tutorial.html
 """
 import optparse  
 import string
-
 def CollectCommand(parser):
     # Here we harvest the command line and check that we have an
     # argument left-over.
@@ -18,7 +16,6 @@ def CollectCommand(parser):
     if not options.filename:
         parser.error("No file name given.")
     return (options, args)
-
 def main():
     parser = SetUpParsing()
     (options, args) = CollectCommand(parser)
@@ -28,7 +25,6 @@ def main():
     count = ProcessFile(options.filename, the_word)
     if options.verbose:
         print ("    %d occurances of '%s'" % (count, the_word))
-
 def ProcessFile(filename, word):
     count = 0
     #for line in file(filename):
@@ -36,11 +32,9 @@ def ProcessFile(filename, word):
         count += [x.strip(string.punctuation) \
                   for x in line.split()].count(word)
     return count
-
 def SetUpParsing():
     # Here we call add_option repeatedly, once for every unix-style
     # option we need for."""
-    
     parser = optparse.OptionParser(
         """%prog -f filename [-q][-v=False] word
     Counts the number of times word-to-count appears in filename.""")
@@ -51,7 +45,6 @@ def SetUpParsing():
     parser.add_option("-q", "--quiet", 
                       action="store_false", dest="verbose")
     return parser
-
 if __name__ == "__main__":
     main()
 """
