@@ -9,11 +9,18 @@ import lab_15_Overriding.lab15 as clock_def
 class TestClock(unittest.TestCase):
     test_values = [(hours, minutes) for hours in range(-10, 25) \
                    for minutes in range(-122, 122)]
+    
+    #print ('test_values:', test_values)
     def testInitEqual(self):
-        now = time.ctime()[11:16]
+        #now = time.ctime()       # Sat Jun 29 12:46:08 2019
+        now = time.ctime()[11:16] # 12:46
+        #print ('now:', now)
         self.assertEqual(clock_def.Clock(now), clock_def.Clock())
         self.assertRaises(ValueError, clock_def.Clock, (1, 2, 3))
+
         for (hours, minutes) in TestClock.test_values:
+            #print ('hours:', hours, 'minutes:', minutes)
+            # hours, minutes, test_values are outside scope variables assigned in line 10.
             clocks = [clock_def.Clock(hours, minutes)]
             clocks += [clock_def.Clock((hours, minutes))]
             clocks += [clock_def.Clock("%d:%02d" % (hours, minutes))]
@@ -23,6 +30,8 @@ class TestClock(unittest.TestCase):
             clock_repr = repr(clocks[0])
             clock_mins = clocks[0].MinutesSince12()
             for each in clocks[1:]:
+                # print ('each:', each, 'clocks', clocks, 'clocks[1:]', clocks[1:])
+                # each: 2:01, clocks =>[clock(' 2:01'),...], clock[1:]=clock(' 2:01')... 
                 self.assertTrue(each.min<60 and each.min>=0)
                 self.assertTrue(each.hr>=1 and each.hr<13)
                 self.assertEqual(str(each), clock_str)
